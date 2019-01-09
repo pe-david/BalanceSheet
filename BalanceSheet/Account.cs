@@ -15,19 +15,6 @@ namespace BalanceSheet
 
         public double Balance { get; private set; }
 
-        public void Apply(Transaction transaction)
-        {
-            var temp = Balance + transaction.Amount;
-            if (temp < 0)
-            {
-                throw new ArgumentOutOfRangeException("Balance cannot be below 0.");
-            }
-
-            Balance = temp;
-            transaction.WriteTransaction();
-            WriteBalance();
-        }
-
         public void ApplyCredit(double amount)
         {
             Balance += amount;
