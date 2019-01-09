@@ -25,6 +25,12 @@ namespace BalanceSheet
 
             Balance = temp;
             transaction.WriteTransaction();
+            WriteBalance();
+        }
+
+        public void WriteBalance()
+        {
+            Console.WriteLine($"Balance: ${Balance:0.00}");
         }
     }
 }

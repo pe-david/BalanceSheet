@@ -13,10 +13,10 @@ namespace BalanceSheet
             TransactionType = "Debit";
         }
 
-        public override void Apply(double amount)
+        public override void Apply(double amount, Account account)
         {
             Amount = amount;
-            Account.Apply(this);
+            account.Apply(this);
         }
     }
 }
