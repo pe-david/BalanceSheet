@@ -19,24 +19,24 @@ namespace BalanceSheet
             return account.Balance;
         }
 
-        public void ApplyCredit(double amount)
+        public void ApplyCredit(CreditTransaction trans)
         {
-            if (amount < 0)
+            if (trans.Amount < 0)
             {
-                throw new ArgumentOutOfRangeException(nameof(amount), "Amount cannot be less than 0.");
+                throw new ArgumentOutOfRangeException(nameof(trans.Amount), "Amount cannot be less than 0.");
             }
 
-            account.ApplyCredit(amount);
+            account.ApplyCredit(trans.Amount);
         }
 
-        public void ApplyDebit(double amount)
+        public void ApplyDebit(DebitTransaction trans)
         {
-            if (amount >= 0)
+            if (trans.Amount >= 0)
             {
-                throw new ArgumentOutOfRangeException(nameof(amount), "Amount cannot be greater than or equal to 0.");
+                throw new ArgumentOutOfRangeException(nameof(trans.Amount), "Amount cannot be greater than or equal to 0.");
             }
 
-            account.ApplyDebit(amount);
+            account.ApplyDebit(trans.Amount);
         }
     }
 }

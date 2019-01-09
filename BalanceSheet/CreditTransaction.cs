@@ -8,15 +8,10 @@ namespace BalanceSheet
 {
     public class CreditTransaction : Transaction
     {
-        public CreditTransaction()
-        {
-            TransactionType = "Credit";
-        }
-
-        public override void Apply(double amount, Account account)
+        public CreditTransaction(double amount)
         {
             Amount = amount;
-            account.Apply(this);
+            TransactionType = "Credit";
         }
     }
 }

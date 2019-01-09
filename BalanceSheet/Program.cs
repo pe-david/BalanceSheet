@@ -31,16 +31,18 @@ namespace BalanceSheet
                     {
                         if (val < 0)
                         {
-                            svc.ApplyDebit(val);
+                            var trans = new DebitTransaction(val);
+                            svc.ApplyDebit(trans);
                         }
                         else
                         {
-                            svc.ApplyCredit(val);
+                            var trans = new CreditTransaction(val);
+                            svc.ApplyCredit(trans);
                         }
                     }
                     catch (ArgumentOutOfRangeException e)
                     {
-                        Console.WriteLine(e.Message.Split('\n')[0]);
+                        Console.WriteLine(e.Message.Split('\r', '\n')[0]);
                     }
                 }
                 else

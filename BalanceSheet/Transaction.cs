@@ -10,9 +10,7 @@ namespace BalanceSheet
     {
         protected string TransactionType { get; set; }
 
-        public double Amount { get; set; }
-
-        public abstract void Apply(double amount, Account account);
+        public double Amount { get; protected set; }
 
         public void WriteTransaction()
         {
