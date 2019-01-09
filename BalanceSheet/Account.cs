@@ -8,6 +8,11 @@ namespace BalanceSheet
 {
     public class Account
     {
+        static Account()
+        {
+            Console.WriteLine("Initial balance: $0.00");
+        }
+
         public double Balance { get; private set; }
 
         public void Apply(Transaction transaction)

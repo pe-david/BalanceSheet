@@ -10,11 +10,13 @@ namespace BalanceSheet
     {
         public DebitTransaction()
         {
+            TransactionType = "Debit";
         }
 
         public override void Apply(double amount)
         {
             Amount = amount;
+            Account.Apply(this);
         }
     }
 }

@@ -8,20 +8,22 @@ namespace BalanceSheet
 {
     public abstract class Transaction
     {
-        protected Transaction()
+        static Transaction()
         {
             Account = new Account();
         }
 
+        protected string TransactionType { get; set; }
+
         public double Amount { get; protected set; }
 
-        protected Account Account { get; private set; }
+        protected static Account Account { get; private set; }
 
         public abstract void Apply(double amount);
 
         public void WriteTransaction()
         {
-            Console.WriteLine("transaction occured...");
+            Console.WriteLine($"{TransactionType} transaction: ${Amount:0.00} Balance: {Account.Balance}");
         }
     }
 }

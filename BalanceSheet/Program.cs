@@ -32,7 +32,34 @@ namespace BalanceSheet
             Console.WriteLine("Hit return on an empty line to cancel...");
             Console.WriteLine("Enter a value. Negative values are debits, positive are credits.");
 
-			Console.ReadKey();
-		}
+            while (true)
+            {
+                var line = Console.ReadLine();
+                if (string.IsNullOrWhiteSpace(line))
+                {
+                    break;
+                }
+
+                double val;
+                Transaction trans = null;
+                if (double.TryParse(line, out val))
+                {
+                    if (val < 0)
+                    {
+                        trans = new DebitTransaction();
+                    }
+                    else
+                    {
+                        trans = new CreditTransaction();
+                    }
+
+                    trans.Apply(val);
+                }
+                else
+                {
+                    Console.WriteLine("Unable to process transaction.");
+                }
+            }
+        }
 	}
 }
