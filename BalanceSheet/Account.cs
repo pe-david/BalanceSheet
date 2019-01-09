@@ -28,6 +28,24 @@ namespace BalanceSheet
             WriteBalance();
         }
 
+        public void ApplyCredit(double amount)
+        {
+            Balance += amount;
+            WriteBalance();
+        }
+
+        public void ApplyDebit(double amount)
+        {
+            var temp = Balance + amount;
+            if (temp < 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(amount), "Balance cannot be below 0.");
+            }
+
+            Balance = temp;
+            WriteBalance();
+        }
+
         public void WriteBalance()
         {
             Console.WriteLine($"Balance: ${Balance:0.00}");

@@ -15,7 +15,7 @@ namespace BalanceSheet
             Console.WriteLine("Hit return on an empty line to cancel...");
             Console.WriteLine("Enter a value. Negative values are debits, positive are credits.");
 
-            Account account = new Account();
+            var svc = new AccountSvc();
 
             while (true)
             {
@@ -25,27 +25,22 @@ namespace BalanceSheet
                     break;
                 }
 
-                double val;
-                Transaction trans = null;
-                if (double.TryParse(line, out val))
+                if (double.TryParse(line, out var val))
                 {
-                    if (val < 0)
-                    {
-                        trans = new DebitTransaction();
-                    }
-                    else
-                    {
-                        trans = new CreditTransaction();
-                    }
-
                     try
                     {
-                        trans.Amount = val;
-                        account.Apply(trans);
+                        if (val < 0)
+                        {
+                            svc.ApplyDebit(val);
+                        }
+                        else
+                        {
+                            svc.ApplyCredit(val);
+                        }
                     }
                     catch (ArgumentOutOfRangeException e)
                     {
-                        Console.WriteLine($"Error: {e.ParamName}");
+                        Console.WriteLine(e.Message.Split('\n')[0]);
                     }
                 }
                 else
