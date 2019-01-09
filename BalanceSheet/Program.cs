@@ -53,7 +53,14 @@ namespace BalanceSheet
                         trans = new CreditTransaction();
                     }
 
-                    trans.Apply(val);
+                    try
+                    {
+                        trans.Apply(val);
+                    }
+                    catch (ArgumentOutOfRangeException e)
+                    {
+                        Console.WriteLine($"Error: {e.ParamName}");
+                    }
                 }
                 else
                 {

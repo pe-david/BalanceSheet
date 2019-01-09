@@ -23,7 +23,7 @@ namespace BalanceSheet
 
         public void WriteTransaction()
         {
-            Console.WriteLine($"{TransactionType} transaction: ${Amount:0.00} Balance: {Account.Balance}");
+            Console.WriteLine($"{TransactionType} transaction: ${Amount:0.00} Balance: ${Account.Balance:0.00}");
         }
     }
 }
