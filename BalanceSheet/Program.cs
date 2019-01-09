@@ -40,7 +40,8 @@ namespace BalanceSheet
 
                     try
                     {
-                        trans.Apply(val, account);
+                        trans.Amount = val;
+                        account.Apply(trans);
                     }
                     catch (ArgumentOutOfRangeException e)
                     {
